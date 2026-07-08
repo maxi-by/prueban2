@@ -34,3 +34,24 @@ inventario = {
     'L005': [400000, 100],
     'L006': [200000, 5],
 }
+def stock_transporte(tipo_transporte, inventario, productos):
+    total = 0
+    for clave in productos:
+        if productos[clave][2].lower() == tipo_transporte.lower():
+            total += inventario[clave][1]
+    print(f"El total de unidades disponibles es: {total}")
+def busqueda_costo(c_min, c_max, inventario, productos):
+    resultados = []
+    for clave in inventario:
+        precio = inventario[clave][0]
+        stock = inventario[clave][1]
+        if (precio >= c_min and precio <= c_max and stock > 0):
+            producto = productos[clave][0] + "--" + clave
+            resultados.append(producto)
+    if len(resultados) == 0:
+        print("No hay productos en ese rango de precios.")
+    else:
+        print("-- Productos encontrados --")
+        resultados.sort()
+        for producto in resultados:
+            print(f"- {producto}")
