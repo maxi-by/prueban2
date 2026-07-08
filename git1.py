@@ -61,6 +61,7 @@ def buscar_codigo(codigo, inventario):
             return True
     return False
 def actualizar_costo(codigo, nuevo_costo, inventario):
+    codigo = codigo.upper()
     if buscar_codigo(codigo, inventario):
         inventario[codigo][0] = nuevo_costo
         return True
@@ -121,3 +122,9 @@ def agregar_carga(codigo, descripción, categoria, tipo_transporte, origen, es_p
         productos[codigo.upper()] = [descripción,categoria, tipo_transporte, origen, es_peligroso_bool, destino]
         inventario[codigo.upper()] = [costo, unidades]
         return True
+def eliminar_carga(codigo, inventario, productos):
+    if buscar_codigo(codigo, inventario):
+        productos.pop(codigo)
+        inventario.pop(codigo)
+        return True
+    return False
