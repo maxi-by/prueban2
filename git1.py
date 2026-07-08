@@ -55,3 +55,69 @@ def busqueda_costo(c_min, c_max, inventario, productos):
         resultados.sort()
         for producto in resultados:
             print(f"- {producto}")
+def buscar_codigo(codigo, inventario):
+    for clave in inventario:
+        if clave.upper() == codigo.upper():
+            return True
+    return False
+def actualizar_costo(codigo, nuevo_costo, inventario):
+    if buscar_codigo(codigo, inventario):
+        inventario[codigo][0] = nuevo_costo
+        return True
+    return False
+def validar_codigo(codigo):
+    if codigo.strip() != "":
+        return True
+    else:
+        return False
+def validar_descripcion(descripcion):
+    if descripcion.strip() != "":
+        return True
+    else:
+        return False
+def validar_categoria(categoria):
+    if categoria.strip() != "":
+        return True
+    else:
+        return False
+def validar_tipo_transporte(tipo_transporte):
+    if tipo_transporte.strip() != "":
+        return True
+    else:
+        return False
+def validar_origen(origen):
+    if origen.strip() != "":
+        return True
+    else:
+        return False
+def validar_es_peligroso(es_peligroso):
+    if es_peligroso == "s" or es_peligroso == "n":
+        return True
+    else:
+        return False
+def validar_destino(destino):
+    if destino.strip() != "":
+        return True
+    else:
+        return False
+def validar_costo(costo):
+    if costo > 0:
+        return True
+    else:
+        return False
+def validar_unidades(unidades):
+    if unidades >= 0:
+        return True
+    else:
+        return False
+def agregar_carga(codigo, descripción, categoria, tipo_transporte, origen, es_peligroso, destino, costo, unidades, inventario, productos):
+    if buscar_codigo(codigo, inventario):
+        return False
+    else:
+        if es_peligroso == "s":
+            es_peligroso_bool = True
+        else:
+            es_peligroso_bool = False
+        productos[codigo.upper()] = [descripción,categoria, tipo_transporte, origen, es_peligroso_bool, destino]
+        inventario[codigo.upper()] = [costo, unidades]
+        return True
